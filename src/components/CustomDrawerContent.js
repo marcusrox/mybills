@@ -38,7 +38,7 @@ export default function CustomDrawerContent(props) {
                     {Firebase.auth().currentUser ? Firebase.auth().currentUser.displayName : ''}
                 </Text>
                 <Text style={{ fontFamily: 'Roboto', fontSize: 16, color: '#FFF' }}>
-                    {Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : ''}
+                    {Firebase.auth().currentUser ? Firebase.auth().currentUser.email : ''}
                 </Text>
             </View>
             <DrawerItemList {...props} />

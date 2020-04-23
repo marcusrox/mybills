@@ -23,13 +23,13 @@ export default function StartupStack({ route, navigation }) {
                     fontWeight: 'bold',
                 },
             }}>
-            <Stack.Screen name="SignupScreen" component={SignupScreen} 
-                options={{ title: 'Registro de novo usuário' }}/>
-            <Stack.Screen name="LoginScreen" component={LoginScreen}
-                options={
-                    { title: 'Tela de Login' },
-                    { headerLeft: null }
-                }
+            <Stack.Screen name="SignupScreen" 
+                component={SignupScreen} 
+                options={{ title: 'MyBills - Novo usuário' }}
+            />
+            <Stack.Screen name="LoginScreen" 
+                component={LoginScreen}
+                options={{ title: 'MyBills - Login', headerLeft: null }}
             />
             
 

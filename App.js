@@ -18,7 +18,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="MenuStartup" drawerContent={(props) => <CustomDrawerContent {...props} />}>
-                <Drawer.Screen name="MenuStartup" component={StartupStack} options={{ drawerLabel: 'MenuStartup' }} />
+                <Drawer.Screen name="MenuStartup" component={StartupStack} options={{ drawerLabel: 'Login' }} />
                 <Drawer.Screen name="MenuBills" component={BillsStack} options={{ drawerLabel: 'Contas do Mês' }}/>
                 <Drawer.Screen name="MenuTemplateBills" component={TemplateBillsStack} options={{ drawerLabel: 'Modelo de contas mensais' }} />
                 <Drawer.Screen name="MenuSettings" component={SettingsStack} options={{ drawerLabel: 'Configurações' }} />

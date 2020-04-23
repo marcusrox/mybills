@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
+import { 
+    StyleSheet, Text, View, TextInput, Button, 
+    Alert, ActivityIndicator, AsyncStorage, Image 
+} from 'react-native';
 import Firebase from '../../Firebase';
 
 
@@ -13,6 +16,16 @@ export default class Signup extends Component {
             password: '',
             isLoading: false
         }
+    }
+
+    componentDidMount = () => {
+        AsyncStorage.getItem('login-email')
+            .then((value) => {
+                if (value) {
+                    this.props.navigation.navigate('LoginScreen')
+                }
+            })
+
     }
 
     updateInputVal = (val, prop) => {
@@ -29,7 +42,7 @@ export default class Signup extends Component {
             this.setState({
                 isLoading: true,
             })
-            console.log("Serei o Loading, vou chamar o Firebase")
+            console.log("Setei o Loading, vou chamar o Firebase")
             Firebase
                 .auth()
                 .createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -60,49 +73,56 @@ export default class Signup extends Component {
             )
         }
         return (
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Nome"
-                    value={this.state.displayName}
-                    onChangeText={(val) => this.updateInputVal(val, 'displayName')}
-                />
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="E-mail"
-                    value={this.state.email}
-                    onChangeText={(val) => this.updateInputVal(val, 'email')}
-                />
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Senha"
-                    value={this.state.password}
-                    onChangeText={(val) => this.updateInputVal(val, 'password')}
-                    maxLength={15}
-                    secureTextEntry={true}
-                />
-                <Button
-                    color="#3740FE"
-                    title="Registrar"
-                    onPress={() => this.registerUser()}
-                />
+            <View style={{ backgroundColor: 'red', flex: 1 }}>
+                <Image style={styles.imgTop} source={require('../assets/top_login.jpg')} />
+                <View style={styles.container}>
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder="Nome"
+                        value={this.state.displayName}
+                        onChangeText={(val) => this.updateInputVal(val, 'displayName')}
+                    />
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder="E-mail"
+                        value={this.state.email}
+                        onChangeText={(val) => this.updateInputVal(val, 'email')}
+                    />
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder="Senha"
+                        value={this.state.password}
+                        onChangeText={(val) => this.updateInputVal(val, 'password')}
+                        maxLength={15}
+                        secureTextEntry={true}
+                    />
+                    <Button
+                        color="#3740FE"
+                        title="Registrar"
+                        onPress={() => this.registerUser()}
+                    />
 
-                <Text
-                    style={styles.loginText}
-                    onPress={() => this.props.navigation.navigate('LoginScreen')}>
-                    Já está registrado? Clique aqui para Login
-        </Text>
+                    <Text
+                        style={styles.loginText}
+                        onPress={() => this.props.navigation.navigate('LoginScreen')}>
+                        Já está registrado? Clique aqui para Login
+                    </Text>
+                </View>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    imgTop: {
+        flex: 4,
+        alignSelf: "center",
+    },    
     container: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        flex: 6,
+        //display: "flex",
+        //flexDirection: "column",
+        justifyContent: "flex-start",
         padding: 35,
         backgroundColor: '#fff'
     },
